@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FizzBook — Online booking for barbers, nail techs &amp; massage therapists</title>
+  <meta name="description" content="FizzBook is the no-fuss booking app for the service industry. Your own booking link, deposits, reminders and a calendar that fills itself — with zero commission on your clients.">
+  <link rel="canonical" href="https://www.fizzbook.shop/">
+  <meta name="theme-color" content="#16121f">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.fizzbook.shop/">
+  <meta property="og:title" content="FizzBook — Fill every slot">
+  <meta property="og:description" content="Time slot booking for barbers, nail techs and massage therapists. Zero commission. Set up in minutes.">
+  <meta property="og:image" content="https://www.fizzbook.shop/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="main.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "FizzBook",
+    "url": "https://www.fizzbook.shop/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web, iOS, Android",
+    "description": "Time slot booking for barbers, nail techs, massage therapists and other service businesses.",
+    "offers": { "@type": "Offer", "price": "19", "priceCurrency": "GBP" }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" id="top">
+    <div class="wrap nav__inner">
+      <a class="logo" href="/" aria-label="FizzBook home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="currentColor"/><circle cx="11" cy="20" r="4.5" fill="var(--fizz)"/><circle cx="20" cy="12" r="3" fill="var(--fizz)"/><circle cx="23.5" cy="21" r="1.8" fill="var(--fizz)"/></svg>
+        <span>Fizz<b>Book</b></span>
+      </a>
+      <nav class="nav__links" aria-label="Main">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn--sm" href="#start">Start free trial</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="bubbles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow"><span class="dot"></span> Booking for the chair, the table &amp; the desk</p>
+          <h1>Fill every slot.<br><span class="fizz-text">Keep every penny.</span></h1>
+          <p class="lede">FizzBook gives barbers, nail techs and massage therapists a booking page clients actually like using — with deposits, reminders and zero commission on the clients you bring.</p>
+          <div class="hero__cta">
+            <a class="btn" href="#start">Try free for 30 days</a>
+            <a class="btn btn--ghost" href="#how">See how it works</a>
+          </div>
+          <ul class="ticks">
+            <li>Live in 5 minutes</li>
+            <li>0% commission</li>
+            <li>Bring your clients over free</li>
+          </ul>
+        </div>
+
+        <!-- Live demo widget -->
+        <div class="demo" aria-label="Interactive booking demo">
+          <div class="demo__head">
+            <div class="avatar" aria-hidden="true">JF</div>
+            <div>
+              <strong>Jay's Fades</strong>
+              <span>fizzbook.shop/jaysfades</span>
+            </div>
+            <span class="pill">Try it</span>
+          </div>
+
+          <div class="demo__body" id="demo">
+            <p class="step-label">1 · Pick a service</p>
+            <div class="services" role="radiogroup" aria-label="Service">
+              <button type="button" class="svc" role="radio" aria-checked="true" data-name="Skin fade" data-mins="45" data-price="22">Skin fade <small>45 min · £22</small></button>
+              <button type="button" class="svc" role="radio" aria-checked="false" data-name="Cut &amp; beard" data-mins="60" data-price="30">Cut &amp; beard <small>60 min · £30</small></button>
+              <button type="button" class="svc" role="radio" aria-checked="false" data-name="Beard trim" data-mins="20" data-price="12">Beard trim <small>20 min · £12</small></button>
+            </div>
+
+            <p class="step-label">2 · Pick a day</p>
+            <div class="days" id="days" role="radiogroup" aria-label="Day"></div>
+
+            <p class="step-label">3 · Pick a time</p>
+            <div class="slots" id="slots" role="radiogroup" aria-label="Time"></div>
+
+            <button type="button" class="btn btn--block" id="bookBtn" disabled>Choose a time</button>
+          </div>
+
+          <div class="demo__done" id="done" hidden>
+            <div class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+            <h3>You're booked!</h3>
+            <p id="doneText"></p>
+            <p class="muted">Reminder text set for the day before.</p>
+            <button type="button" class="btn btn--ghost btn--sm" id="again">Book another</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRADES -->
+    <section class="trades" aria-label="Who it's for">
+      <div class="marquee">
+        <div class="marquee__track">
+          <span>✂ Barbers</span><span>💅 Nail techs</span><span>💆 Massage therapists</span><span>👁 Lash &amp; brow</span><span>💇 Hair salons</span><span>🖋 Tattoo studios</span><span>🧖 Spas &amp; facials</span><span>🐾 Dog groomers</span>
+          <span aria-hidden="true">✂ Barbers</span><span aria-hidden="true">💅 Nail techs</span><span aria-hidden="true">💆 Massage therapists</span><span aria-hidden="true">👁 Lash &amp; brow</span><span aria-hidden="true">💇 Hair salons</span><span aria-hidden="true">🖋 Tattoo studios</span><span aria-hidden="true">🧖 Spas &amp; facials</span><span aria-hidden="true">🐾 Dog groomers</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section" id="features">
+      <div class="wrap">
+        <p class="eyebrow">Everything you need, nothing you don't</p>
+        <h2>Built for people who work with their hands — not their inbox.</h2>
+        <div class="features">
+          <article class="card card--big">
+            <span class="icon">⚡</span>
+            <h3>Your own booking link</h3>
+            <p>A clean page at <b>fizzbook.shop/you</b>. Drop it in your Instagram bio, TikTok or Google profile and let clients book themselves in 20 seconds — no app download, no account required.</p>
+          </article>
+          <article class="card">
+            <span class="icon">💸</span>
+            <h3>Zero commission</h3>
+            <p>Your clients, your money. We never take a cut of bookings you bring in.</p>
+          </article>
+          <article class="card">
+            <span class="icon">🛡</span>
+            <h3>Deposits &amp; no-show fees</h3>
+            <p>Take a deposit up front or card-on-file. Ghosters pay, you don't.</p>
+          </article>
+          <article class="card">
+            <span class="icon">🔔</span>
+            <h3>SMS &amp; email reminders</h3>
+            <p>Automatic nudges the day before and an hour before. Fewer empty chairs.</p>
+          </article>
+          <article class="card">
+            <span class="icon">📅</span>
+            <h3>Smart time slots</h3>
+            <p>Buffers, breaks, travel time and per-service durations — slots fit your day, not the other way round.</p>
+          </article>
+          <article class="card">
+            <span class="icon">⏳</span>
+            <h3>Waitlist autofill</h3>
+            <p>Someone cancels? The next person on the waitlist gets a text and grabs the slot.</p>
+          </article>
+          <article class="card">
+            <span class="icon">📝</span>
+            <h3>Client notes</h3>
+            <p>Guard numbers, gel colours, pressure preferences, allergies — remembered every visit.</p>
+          </article>
+          <article class="card card--wide">
+            <span class="icon">👥</span>
+            <h3>Solo or a whole team</h3>
+            <p>Run a one-chair setup or a busy shop with multiple staff, each with their own hours, services and calendar. Syncs with Google &amp; Apple Calendar.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW -->
+    <section class="section section--ink" id="how">
+      <div class="wrap">
+        <p class="eyebrow">How it works</p>
+        <h2>From sign-up to first booking before your next client sits down.</h2>
+        <ol class="steps">
+          <li>
+            <span class="num">1</span>
+            <h3>Add your services</h3>
+            <p>Name, length, price. Pick from templates for your trade or start from scratch.</p>
+          </li>
+          <li>
+            <span class="num">2</span>
+            <h3>Set your hours</h3>
+            <p>Working days, breaks and days off. FizzBook turns them into bookable slots.</p>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <h3>Share your link</h3>
+            <p>Paste it in your bio. Bookings, reminders and deposits handle themselves.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- COMPARE -->
+    <section class="section" id="compare">
+      <div class="wrap compare">
+        <div>
+          <p class="eyebrow">Switching is easy</p>
+          <h2>Tired of paying a marketplace to book your own regulars?</h2>
+          <p class="lede">Big booking marketplaces are built to list you next to the shop down the road. FizzBook is built to fill <em>your</em> book. Import your client list and we'll help you move over — free.</p>
+          <a class="btn" href="#start">Switch to FizzBook</a>
+        </div>
+        <table class="table">
+          <thead>
+            <tr><th scope="col"></th><th scope="col">FizzBook</th><th scope="col">Typical marketplace apps</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Commission on your own clients</th><td class="yes">0%</td><td>Often</td></tr>
+            <tr><th scope="row">Client needs an account</th><td class="yes">No</td><td>Usually</td></tr>
+            <tr><th scope="row">Your competitors shown on your page</th><td class="yes">Never</td><td>Sometimes</td></tr>
+            <tr><th scope="row">Free migration help</th><td class="yes">Yes</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section section--tint" id="pricing">
+      <div class="wrap">
+        <p class="eyebrow">Pricing</p>
+        <h2>Simple pricing. Cancel any time.</h2>
+        <div class="billing" role="group" aria-label="Billing period">
+          <button type="button" class="billing__opt" aria-pressed="true" data-period="monthly">Monthly</button>
+          <button type="button" class="billing__opt" aria-pressed="false" data-period="yearly">Yearly <small>2 months free</small></button>
+        </div>
+        <div class="plans">
+          <article class="plan">
+            <h3>Starter</h3>
+            <p class="price"><span class="amt" data-monthly="19" data-yearly="15.83">£19</span><small>/mo</small></p>
+            <p class="muted">For getting going on your own.</p>
+            <ul>
+              <li>1 staff member</li>
+              <li>Unlimited bookings</li>
+              <li>Your own booking link</li>
+              <li>Email reminders</li>
+            </ul>
+            <a class="btn btn--ghost btn--block" href="#start">Start free trial</a>
+          </article>
+          <article class="plan plan--hot">
+            <span class="plan__tag">Most popular</span>
+            <h3>Pro</h3>
+            <p class="price"><span class="amt" data-monthly="39" data-yearly="32.50">£39</span><small>/mo</small></p>
+            <p class="muted">For busy solo pros who hate no-shows.</p>
+            <ul>
+              <li>Everything in Starter</li>
+              <li>Deposits &amp; no-show fees</li>
+              <li>SMS reminders</li>
+              <li>Waitlist autofill</li>
+              <li>Client notes &amp; history</li>
+            </ul>
+            <a class="btn btn--block" href="#start">Try Pro free for 30 days</a>
+          </article>
+          <article class="plan">
+            <h3>Shop</h3>
+            <p class="price"><span class="amt" data-monthly="49" data-yearly="40.83">£49</span><small>/mo</small></p>
+            <p class="muted">For teams, salons and studios.</p>
+            <ul>
+              <li>Everything in Pro</li>
+              <li>Up to 10 staff</li>
+              <li>Staff rotas &amp; permissions</li>
+              <li>Reports &amp; payouts</li>
+            </ul>
+            <a class="btn btn--ghost btn--block" href="#start">Start free trial</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="wrap wrap--narrow">
+        <p class="eyebrow">FAQ</p>
+        <h2>Questions, answered.</h2>
+        <div class="faq">
+          <details>
+            <summary>Do my clients need to download an app?</summary>
+            <p>No. Clients book from your link in any browser in about 20 seconds. They get a confirmation and reminders by text or email.</p>
+          </details>
+          <details>
+            <summary>Can I move my clients and bookings over from another app?</summary>
+            <p>Yes. Upload a CSV export of your client list and upcoming appointments, or send it to us and we'll do the import for you, free.</p>
+          </details>
+          <details>
+            <summary>How do deposits work?</summary>
+            <p>Choose a fixed amount or a percentage per service. Clients pay when they book and it comes off the final price. If they no-show, you keep it.</p>
+          </details>
+          <details>
+            <summary>Do you take a cut of my bookings?</summary>
+            <p>No. You pay a flat monthly price from £19. Standard card processing fees apply only when you take payments through FizzBook.</p>
+          </details>
+          <details>
+            <summary>Does it work for mobile and home-visit pros?</summary>
+            <p>Yes. Add travel time between appointments and a service area, and FizzBook only offers slots you can actually reach.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="start">
+      <div class="bubbles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="wrap wrap--narrow">
+        <h2>Ready to fill your book?</h2>
+        <p class="lede">Grab your FizzBook link now. Try any plan free for 30 days — no card needed.</p>
+        <form class="signup" id="signup" novalidate>
+          <label class="sr" for="email">Email address</label>
+          <input id="email" name="email" type="email" placeholder="you@yourshop.com" autocomplete="email" required>
+          <button class="btn" type="submit">Claim my link</button>
+        </form>
+        <p class="signup__msg" id="signupMsg" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <a class="logo" href="#top" aria-label="Back to top">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="currentColor"/><circle cx="11" cy="20" r="4.5" fill="var(--fizz)"/><circle cx="20" cy="12" r="3" fill="var(--fizz)"/><circle cx="23.5" cy="21" r="1.8" fill="var(--fizz)"/></svg>
+        <span>Fizz<b>Book</b></span>
+      </a>
+      <nav aria-label="Footer">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="mailto:hello@fizzbook.shop">Contact</a>
+      </nav>
+      <p class="muted">© <span id="year">2026</span> FizzBook · A FizzBite product</p>
+    </div>
+  </footer>
+</body>
+</html>
