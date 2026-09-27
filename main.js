@@ -55,8 +55,8 @@
       b.dataset.date = d.toISOString();
       daysEl.append(b);
     }
-    // Default to tomorrow so there are always slots left
-    const first = daysEl.children[1];
+    // Default to the next open day (from tomorrow) so there are always slots left
+    const first = [...daysEl.children].slice(1).find(b => new Date(b.dataset.date).getDay() !== 0);
     select(daysEl, first);
     state.day = new Date(first.dataset.date);
   }
